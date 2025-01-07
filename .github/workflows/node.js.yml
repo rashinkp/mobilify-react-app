@@ -1,4 +1,4 @@
-name: Node.js CI/CD
+name: Node.js CI
 
 on:
   push:
@@ -27,84 +27,19 @@ jobs:
       run: npm ci
     
     - name: Build
-      run: |
-        echo "Starting build process..."
-        npm run build || (echo "Build failed with exit code $?" && exit 1)
-      env:
-        VITE_API_URL: ${{ secrets.VITE_API_URL }}
-        NODE_ENV: production
+      run: npm run build
 
-    - name: Verify build output
-      run: |
-        if [ -d "dist" ]; then
-          echo "Build directory exists, listing contents:"
-          ls -la dist/
-        else
-          echo "Error: dist directory not found after build"
-          echo "Current directory contents:"
-          ls -la
-          exit 1
-        fi
+    - name: List files in dist folder
+      run: ls -l dist # Verify if the dist folder exists and contains files
     
     - name: Cache build artifacts
-      if: success()
       uses: actions/cache@v4
       with:
         path: dist/
         key: ${{ runner.os }}-build-${{ github.sha }}
-        restore-keys: |
-          ${{ runner.os }}-build-
         
     - name: Upload build artifacts
-      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: build-files
         path: dist/
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && success()
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: dist
-
-    - name: Deploy to server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        script: |
-          cd ~/frontend/_work/mobilify-react-app/mobilify-react-app
-          
-          # Backup existing dist if it exists
-          if [ -d "dist" ]; then
-            mv dist dist_backup_$(date +%Y%m%d_%H%M%S)
-          fi
-          
-          # Pull latest changes
-          git pull origin master
-          
-          # Install production dependencies
-          npm ci --production
-          
-          # Move new build to dist
-          mkdir -p dist
-          cp -r dist/* .
-          
-          # Serve with PM2
-          if pm2 show frontend-serve > /dev/null; then
-            pm2 restart frontend-serve
-          else
-            pm2 serve dist 3000 --name frontend-serve --spa
-          fi
-          
-          pm2 save

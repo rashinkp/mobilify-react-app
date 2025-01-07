@@ -7,29 +7,9 @@ export default defineConfig({
     host: "0.0.0.0",
   },
   build: {
-    outDir: "dist",
+    outDir: "build", // Changed from 'dist' to 'build'
     sourcemap: true,
-    chunkSizeWarningLimit: 1500, // Increased from 1000
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Split vendor chunks
-          vendor: [
-            "react",
-            "react-dom",
-            "react-router-dom",
-            "@reduxjs/toolkit",
-            "react-redux",
-          ],
-          // Split chart libraries
-          charts: ["chart.js", "react-chartjs-2", "recharts"],
-          // Split UI libraries
-          ui: ["@headlessui/react", "@shadcn/ui", "lucide-react"],
-          // Split form libraries
-          forms: ["react-hook-form", "@hookform/resolvers", "yup"],
-        },
-      },
-    },
+    chunkSizeWarningLimit: 1000,
   },
   plugins: [react()],
 });
