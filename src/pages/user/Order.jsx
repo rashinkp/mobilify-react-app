@@ -26,7 +26,7 @@ import { useNavigate, useParams } from "react-router";
 import { RotatingLines } from "react-loader-spinner";
 import { errorToast, successToast } from "../../components/toast";
 import { useGetProductQuery } from "../../redux/slices/productApiSlice";
-import CancelConfirmation from "../../components/cancelConfirmation";
+import CancelConfirmation from "../../components/CancelConfirmation.jsx";
 import jsPDF from "jspdf";
 import { handleDownloadInvoice } from "../../components/downloadInvoice";
 import PriceBreakdown from "../../components/Billing";
