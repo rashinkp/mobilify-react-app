@@ -27,20 +27,36 @@ jobs:
       run: npm ci
     
     - name: Build
-      run: npm run build
+      run: |
+        echo "Starting build process..."
+        npm run build || (echo "Build failed with exit code $?" && exit 1)
       env:
         VITE_API_URL: ${{ secrets.VITE_API_URL }}
+        NODE_ENV: production
 
-    - name: List files in dist folder
-      run: ls -l dist
+    - name: Verify build output
+      run: |
+        if [ -d "dist" ]; then
+          echo "Build directory exists, listing contents:"
+          ls -la dist/
+        else
+          echo "Error: dist directory not found after build"
+          echo "Current directory contents:"
+          ls -la
+          exit 1
+        fi
     
     - name: Cache build artifacts
+      if: success()
       uses: actions/cache@v4
       with:
         path: dist/
         key: ${{ runner.os }}-build-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-build-
         
     - name: Upload build artifacts
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: build-files
@@ -49,9 +65,17 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' && success()
     
     steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-files
+        path: dist
+
     - name: Deploy to server
       uses: appleboy/ssh-action@master
       with:
@@ -59,31 +83,28 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          # Navigate to project directory
           cd ~/frontend/_work/mobilify-react-app/mobilify-react-app
+          
+          # Backup existing dist if it exists
+          if [ -d "dist" ]; then
+            mv dist dist_backup_$(date +%Y%m%d_%H%M%S)
+          fi
           
           # Pull latest changes
           git pull origin master
           
-          # Install dependencies
-          npm ci
+          # Install production dependencies
+          npm ci --production
           
-          # Build the application
-          npm run build
+          # Move new build to dist
+          mkdir -p dist
+          cp -r dist/* .
           
-          # Check if build was successful
-          if [ -d "dist" ]; then
-            echo "Build successful"
-            
-            # If using PM2 to serve the static files
-            if pm2 show frontend-serve > /dev/null; then
-              pm2 restart frontend-serve
-            else
-              pm2 serve dist 3000 --name frontend-serve --spa
-            fi
-            
-            pm2 save
+          # Serve with PM2
+          if pm2 show frontend-serve > /dev/null; then
+            pm2 restart frontend-serve
           else
-            echo "Build failed - dist directory not found"
-            exit 1
+            pm2 serve dist 3000 --name frontend-serve --spa
           fi
+          
+          pm2 save
