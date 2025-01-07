@@ -7,7 +7,7 @@ export default defineConfig({
     host: "0.0.0.0",
   },
   build: {
-    outDir: "dist", // Changed from 'dist' to 'build'
+    outDir: "dist", 
     sourcemap: true,
     chunkSizeWarningLimit: 1000,
   },
