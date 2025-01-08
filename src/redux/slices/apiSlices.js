@@ -3,7 +3,7 @@ import { userLogout } from "./authUser";
 import { adminLogout } from "./authAdmin";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:4000",
+  baseUrl: "https://mobilify.ddns.net",
   credentials: "include",
   prepareHeaders: (headers) => {
     headers.set("Accept", "application/json");
