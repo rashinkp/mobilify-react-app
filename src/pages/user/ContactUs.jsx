@@ -12,12 +12,12 @@ const ContactUs = () => {
       {
         name: "Home",
         icon: <FontAwesomeIcon icon="fa-solid fa-house" />,
-        path: "/user",
+        path: "/",
       },
       {
         name: "contact-us",
         icon: <FontAwesomeIcon icon="fa-solid fa-phone" />,
-        path: "/user/contact",
+        path: "/contact",
       },
     ];
       
@@ -29,7 +29,7 @@ const ContactUs = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center text-sm text-white">
             <Link
-              to="/user"
+              to="/"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <Home className="w-4 h-4 mr-1" />

@@ -46,7 +46,7 @@ const EnterOtp = () => {
       try {
         await verifyOtp(otp).unwrap();
         successToast("otp verified");
-        navigate("/user/forgotPassword", {state:{access:true}});
+        navigate("/forgotPassword", {state:{access:true}});
       } catch (error) {
         console.error("Error changing password:", error);
         errorToast(error?.message || error?.data?.message || "Error occurred");
@@ -92,7 +92,7 @@ const EnterOtp = () => {
     const extraLinks = [
       {
         linkText: `Change email?`,
-        path: "/user/forgotPassword/email",
+        path: "/forgotPassword/email",
       },
       {
         text: `${

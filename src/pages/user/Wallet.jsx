@@ -113,7 +113,7 @@ const WalletDashboard = () => {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center text-sm text-white">
               <Link
-                to="/user"
+                to="/"
                 className="text-white hover:text-white/80 transition-colors flex items-center"
               >
                 <Home className="w-4 h-4 mr-1" />
@@ -121,7 +121,7 @@ const WalletDashboard = () => {
               </Link>
               <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
               <Link
-                to="/user/profile"
+                to="/profile"
                 className="text-white hover:text-white/80 transition-colors flex items-center"
               >
                 <User className="w-4 h-4 mr-1" />

@@ -29,7 +29,7 @@ const EnterEamil = () => {
 
   // useEffect(() => {
   //   if (userInfo) {
-  //     navigate("/user");
+  //     navigate("/");
   //   }
   // }, [userInfo, navigate]);
 
@@ -40,7 +40,7 @@ const EnterEamil = () => {
     try {
       await sendOtp({ email }).unwrap();
       successToast('Otp send to email');
-      navigate("/user/forgotPassword/otp");
+      navigate("/forgotPassword/otp");
     } catch (error) {
        console.error("Error changing password:", error);
       errorToast(error?.message || error?.data?.message || "Error occurred");

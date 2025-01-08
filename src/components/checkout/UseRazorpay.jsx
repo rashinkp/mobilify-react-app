@@ -27,7 +27,7 @@ export const useRazorpay = (verifyPayment, placeOrder) => {
             return;
           }
           successToast("Payment successful!");
-          navigate(`/user/orderSuccess`);
+          navigate(`/orderSuccess`);
         } else {
           errorToast("Payment verification failed. Please try again.");
         }

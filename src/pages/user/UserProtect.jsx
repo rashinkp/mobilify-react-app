@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const ProtectUser = () => {
   const { userInfo } = useSelector((state) => state.userAuth);
 
-  return userInfo ? <Outlet /> : <Navigate to="/user/login" replace />;
+  return userInfo ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default ProtectUser;

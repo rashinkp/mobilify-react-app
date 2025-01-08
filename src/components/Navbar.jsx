@@ -55,7 +55,7 @@ const Navbar = () => {
       dispatch(userLogout());
       googleLogout();
       successToast("Logout Successful");
-      navigate("/user/login");
+      navigate("/login");
     } catch (err) {
       console.log(err);
     }
@@ -65,19 +65,19 @@ const Navbar = () => {
     list: [
       {
         text: "Profile",
-        path: "/user/profile",
+        path: "/profile",
       },
       {
         text: "Orders",
-        path: "/user/orders",
+        path: "/orders",
       },
       {
         text: "Wishlist",
-        path: "/user/wishlist",
+        path: "/wishlist",
       },
       {
         text: "Wallet",
-        path: "/user/wallet",
+        path: "/wallet",
       },
     ],
   };
@@ -85,19 +85,19 @@ const Navbar = () => {
   const links = [
     {
       text: "home",
-      path: "/user",
+      path: "/",
     },
     {
       text: "products",
-      path: "/user/products",
+      path: "/products",
     },
     {
       text: "contact",
-      path: "/user/contact",
+      path: "/contact",
     },
     {
       text: "about us",
-      path: "/user/about",
+      path: "/about",
     },
   ];
 
@@ -192,13 +192,13 @@ const Navbar = () => {
 
             <div className="flex space-x-4 items-center">
               {/* Wishlist Link */}
-              <Link to="/user/wishlist" className="relative">
+              <Link to="/wishlist" className="relative">
                 <Heart className="text-black dark:text-white" size={30} />
                 {/* Count Badge */}
               </Link>
 
               {/* Cart Link */}
-              <Link to="/user/cart" className="relative">
+              <Link to="/cart" className="relative">
                 <ShoppingCart
                   className="text-black dark:text-white"
                   size={30}
@@ -268,13 +268,13 @@ const Navbar = () => {
                   className="cursor-pointer hover:text-primary  dark:hover:text-primary"
                 />
               </li>
-              <Link to="/user/login">
+              <Link to="/login">
                 <li className="cursor-pointer hover:text-purple-700 ">LOGIN</li>
               </Link>
 
               <li className="cursor-pointer hover:text-purple-700 ">
                 <div className="bg-indigo-600 text-lightText py-2 px-5 rounded-full flex gap-4 items-center dark:bg-inherit dark:border dark:border-lightBackground ">
-                  <Link to="/user/signup">
+                  <Link to="/signup">
                     <button className="">SIGN UP</button>
                   </Link>
                   <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
@@ -308,7 +308,7 @@ const Navbar = () => {
               {userInfo ? (
                 <div className="flex items-center gap-3 mt-2">
                   <div className="flex items-center gap-2 cursor-pointer">
-                    <Link to="/user/profile">
+                    <Link to="/profile">
                       <li>PROFILE</li>
                     </Link>
                   </div>
@@ -327,7 +327,7 @@ const Navbar = () => {
                         className="cursor-pointer hover:text-primary  dark:hover:text-primary"
                       />
                     </li>
-                    <Link to="/user/login" onClick={() => setMenuOpen(false)}>
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>
                       <li className="cursor-pointer hover:text-purple-700 ">
                         LOGIN
                       </li>
@@ -336,7 +336,7 @@ const Navbar = () => {
                     <li className="cursor-pointer hover:text-purple-700 ">
                       <div className="bg-indigo-600 text-lightText py-2 px-5 rounded-full flex gap-4 items-center dark:bg-inherit dark:border dark:border-lightBackground ">
                         <Link
-                          to="/user/signup"
+                          to="/signup"
                           onClick={() => setMenuOpen(false)}
                         >
                           <button className="">SIGN UP</button>

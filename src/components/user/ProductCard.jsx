@@ -10,7 +10,7 @@ const ProductCard = ({ product, refetch }) => {
 
   const handleClick = (e) => {
     if (!e.target.closest(".wishlist-btn") && !e.target.closest(".cart-btn")) {
-      navigate(`/user/product/${product._id}`);
+      navigate(`/product/${product._id}`);
       window.scrollTo(0, 0);
     }
   };

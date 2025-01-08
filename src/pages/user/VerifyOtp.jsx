@@ -84,7 +84,7 @@ const VerifyOtp = () => {
       const res = await register({ data, id }).unwrap();
       dispatch(userLogin({ ...res }));
       successToast("User registered successfull");
-      navigate("/user");
+      navigate("/");
     } catch (error) {
       errorToast(
         error?.data?.message || error.message || "Failed to register user"

@@ -25,7 +25,7 @@ const EnterNewPassword = () => {
     try {
       await changePassword({ password }).unwrap();
       successToast("Password changed successfully");
-      navigate("/user/login");
+      navigate("/login");
     } catch (error) {
       console.error("Error changing password:", error);
       errorToast(error?.message || error?.data?.message || "Error occurred");

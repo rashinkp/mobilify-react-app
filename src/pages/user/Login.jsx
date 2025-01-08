@@ -35,11 +35,11 @@ const Login = () => {
     {
       text: `don't have account?`,
       linkText: `signup`,
-      path: "/user/signup",
+      path: "/signup",
     },
     {
       linkText: `forgot password?`,
-      path: "/user/forgotPassword/email",
+      path: "/forgotPassword/email",
     },
   ];
 
@@ -50,7 +50,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/user");
+      navigate("/");
     }
   }, [userInfo, navigate]);
 
@@ -62,7 +62,7 @@ const Login = () => {
       const res = await login({ email, password }).unwrap();
       dispatch(userLogin({ ...res }));
       successToast("Login Successful");
-      navigate("/user");
+      navigate("/");
     } catch (err) {
       errorToast(
         err?.data?.message ||

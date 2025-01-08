@@ -40,7 +40,7 @@ const GoogleSignIn = () => {
           const response = await googleSign({ name, email, picture }).unwrap();
           dispatch(userLogin({ ...response }));
           successToast("Login Successful");
-          navigate("/user");
+          navigate("/");
         })
         .catch((error) =>
           errorToast(

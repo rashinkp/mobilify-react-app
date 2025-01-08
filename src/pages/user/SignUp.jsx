@@ -48,7 +48,7 @@ const SignUp = () => {
     {
       text: 'already have account',
       linkText: 'sign in',
-      path: '/user/login'
+      path: '/login'
     }
   ]
 
@@ -60,7 +60,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/user');
+      navigate('/');
     }
   }, [userInfo, navigate])
   
@@ -74,7 +74,7 @@ const SignUp = () => {
 
       setIsUpdating(false);
       successToast(`OTP send to ${email}`);
-      navigate(`/user/email-verification/${userId}`);
+      navigate(`/email-verification/${userId}`);
     } catch (err) {
       setIsUpdating(false);
       errorToast(err?.data?.message || err.error || err.message || 'An error occured while registering');

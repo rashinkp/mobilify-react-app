@@ -100,7 +100,7 @@ const UserProfileDashboard = () => {
       dispatch(userLogout());
       googleLogout();
       successToast("Logout Successful");
-      navigate("/user/login");
+      navigate("/login");
     } catch (err) {
       console.log(err);
     }
@@ -136,7 +136,7 @@ const UserProfileDashboard = () => {
           <div className="max-w-7xl mx-auto px-4 py-4">
             <div className="flex items-center text-sm text-white">
               <Link
-                to="/user"
+                to="/"
                 className="text-white hover:text-white/80 transition-colors flex items-center"
               >
                 <Home className="w-4 h-4 mr-1" />

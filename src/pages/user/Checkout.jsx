@@ -200,7 +200,7 @@ const CheckoutPage = () => {
             return;
           }
           successToast("Payment successful!");
-          navigate(`/user/orderSuccess`);
+          navigate(`/orderSuccess`);
         } else {
           errorToast("Payment verification failed. Please try again.");
         }
@@ -298,7 +298,7 @@ const CheckoutPage = () => {
       if (val) {
         await addToFailedPayment(orderData).unwrap();
         successToast("Order moved to failedPayment");
-        navigate("/user/orders");
+        navigate("/orders");
         return;
       }
 
@@ -308,7 +308,7 @@ const CheckoutPage = () => {
         const response = await placeOrder(orderData).unwrap();
         if (response) {
           successToast("Order placed successfully");
-          navigate(`/user/orderSuccess`);
+          navigate(`/orderSuccess`);
         } else {
           errorToast("Failed to place order. Please try again.");
         }
@@ -319,7 +319,7 @@ const CheckoutPage = () => {
         const response = await placeOrder(orderData).unwrap();
         if (response) {
           successToast("Order placed successfully");
-          navigate(`/user/orderSuccess`);
+          navigate(`/orderSuccess`);
         } else {
           errorToast();
         }
@@ -359,7 +359,7 @@ const CheckoutPage = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center text-sm text-white">
             <Link
-              to="/user"
+              to="/"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <Home className="w-4 h-4 mr-1" />
@@ -368,7 +368,7 @@ const CheckoutPage = () => {
             <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
 
             <Link
-              to="/user/profile"
+              to="/profile"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <User className="w-4 h-4 mr-1" />
@@ -376,7 +376,7 @@ const CheckoutPage = () => {
             </Link>
             <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
             <Link
-              to="/user/cart"
+              to="/cart"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <ShoppingCart className="w-4 h-4 mr-1" />

@@ -136,7 +136,7 @@ const ShoppingCart = () => {
   );
 
   const handleProceed = () => {
-    navigate("/user/checkout");
+    navigate("/checkout");
   };
 
   //price after offer
@@ -165,7 +165,7 @@ const ShoppingCart = () => {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center text-sm text-white">
             <Link
-              to="/user"
+              to="/"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <Home className="w-4 h-4 mr-1" />
@@ -174,7 +174,7 @@ const ShoppingCart = () => {
             <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
 
             <Link
-              to="/user/profile"
+              to="/profile"
               className="text-white hover:text-white/80 transition-colors flex items-center"
             >
               <User className="w-4 h-4 mr-1" />
@@ -316,7 +316,7 @@ const ShoppingCart = () => {
             ))
           )}
 
-          <Link to="/user/products" className="mt-6">
+          <Link to="/products" className="mt-6">
             <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-800 transition">
               Continue Shopping
             </button>

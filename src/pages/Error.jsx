@@ -18,7 +18,7 @@ const ErrorPage = ({
   };
 
   const handleGoHome = () => {
-    window.location.href = "/user";
+    window.location.href = "/";
   };
 
   return (

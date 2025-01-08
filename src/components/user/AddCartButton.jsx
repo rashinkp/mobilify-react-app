@@ -30,7 +30,7 @@ const AddCartButton = ({
     }
 
     if (!userInfo) {
-      return navigate('/user/login')
+      return navigate('/login')
     }
 
 
@@ -52,7 +52,7 @@ const AddCartButton = ({
     <div className="relative w-full">
       {isInCart ? (
         <button
-          onClick={() => navigate("/user/cart")}
+          onClick={() => navigate("/cart")}
           disabled={disabled || isLoading}
           className={`group w-full px-6 py-3 rounded-lg 
           flex items-center justify-center gap-3

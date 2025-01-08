@@ -51,13 +51,13 @@ const OrderSuccessPage = () => {
           {/* Action Buttons */}
           <div className="mt-6 flex space-x-4">
             <button
-              onClick={() => navigate("/user/orders")}
+              onClick={() => navigate("/orders")}
               className="flex-1 bg-indigo-500 text-white py-3 rounded-lg hover:bg-indigo-600 transition"
             >
               View Orders
             </button>
             <button
-              onClick={() => navigate("/user/products")}
+              onClick={() => navigate("/products")}
               className="flex-1 bg-gray-200 dark:bg-darkBackground dark:text-white text-gray-800 py-3 rounded-lg hover:bg-gray-300 transition"
             >
               Continue Shopping
