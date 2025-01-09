@@ -3,10 +3,16 @@ import { useNavigate } from "react-router";
 import { Heart, Star, StarHalf } from "lucide-react";
 import AddCartButton from "./AddCartButton";
 import { useToggleWishListMutation } from "../../redux/slices/wishlistApiSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductCard = ({ product, refetch }) => {
   const navigate = useNavigate();
   const [toggleWishlist] = useToggleWishListMutation();
+
+
+
+  const { userInfo } = useSelector((state) => state.userAuth);
+
 
   const handleClick = (e) => {
     if (!e.target.closest(".wishlist-btn") && !e.target.closest(".cart-btn")) {
@@ -17,7 +23,17 @@ const ProductCard = ({ product, refetch }) => {
 
   const handleFavClick = async (e) => {
     e.stopPropagation();
+
+    
+
+
     try {
+
+      if (!userInfo) {
+        return navigate("/login");
+      }
+
+      
       await toggleWishlist({ productId: product._id });
       refetch();
     } catch (error) {

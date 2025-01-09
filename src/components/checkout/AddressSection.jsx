@@ -32,22 +32,28 @@ const  AddressSection = ({
         )}
       </div>
       <div className="grid md:grid-cols-2 gap-4">
-        {addresses.map((address) => (
-          <div
-            key={address._id}
-            className={`p-4 border rounded-lg cursor-pointer ${
-              selectedAddress?._id === address._id
-                ? "border-indigo-500 bg-indigo-50 dark:bg-black"
-                : "hover:bg-gray-100 hover:dark:bg-gray-500"
-            }`}
-            onClick={() => setSelectedAddress(address)}
-          >
-            <h3 className="font-semibold">{address.label}</h3>
-            <p>{address.street}</p>
-            <p>{`${address.city}, ${address.state} ${address.zip}`}</p>
-            <p>{address.phone}</p>
-          </div>
-        ))}
+        {addresses.length > 0 ? (
+          addresses.map((address) => (
+            <div
+              key={address._id}
+              className={`p-4 border rounded-lg cursor-pointer ${
+                selectedAddress?._id === address._id
+                  ? "border-indigo-500 bg-indigo-50 dark:bg-black"
+                  : "hover:bg-gray-100 hover:dark:bg-gray-500"
+              }`}
+              onClick={() => setSelectedAddress(address)}
+            >
+              <h3 className="font-semibold">{address.label}</h3>
+              <p>{address.street}</p>
+              <p>{`${address.city}, ${address.state} ${address.zip}`}</p>
+              <p>{address.phone}</p>
+            </div>
+          ))
+        ) : (
+          <p className="text-red-500 col-span-2 text-center">
+            Address is not available
+          </p>
+        )}
       </div>
     </section>
   );

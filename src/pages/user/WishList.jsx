@@ -158,13 +158,13 @@ const WishList = () => {
                           <ShoppingCart className="w-4 h-4" />
                           Add to Cart
                         </button>
-                        <button
+                        {/* <button
                           onClick={() => handleBuyNow(product.productId)}
                           className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-indigo-700 rounded-lg hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
                         >
                           <CreditCard className="w-4 h-4" />
                           Buy Now
-                        </button>
+                        </button> */}
                         <button
                           onClick={() => handleRemove(product.productId)}
                           className="inline-flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 hover:text-red-700 rounded-lg dark:text-red-400 dark:hover:bg-red-900/20"

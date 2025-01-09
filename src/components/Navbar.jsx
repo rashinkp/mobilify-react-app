@@ -310,11 +310,17 @@ const Navbar = () => {
                     <Link to="/profile">
                       <li>PROFILE</li>
                     </Link>
+                  </div>
+
+                  <div className="flex items-center gap-2 cursor-pointer">
                     <Link to="/orders">
-                      <li>Orders</li>
+                      <li>ORDERS</li>
                     </Link>
+                  </div>
+
+                  <div className="flex items-center gap-2 cursor-pointer">
                     <Link to="/wishlist">
-                      <li>Wishlist</li>
+                      <li>WISHLIST</li>
                     </Link>
                   </div>
                 </div>
