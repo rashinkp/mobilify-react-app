@@ -16,7 +16,7 @@ import {
   Copyright,
   Tag,
 } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../redux/slices/themeSlice";
 import { useAdminLogoutMutation } from "../../redux/slices/adminApiSlices";

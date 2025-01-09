@@ -4,6 +4,7 @@ import { Heart, Star, StarHalf } from "lucide-react";
 import AddCartButton from "./AddCartButton";
 import { useToggleWishListMutation } from "../../redux/slices/wishlistApiSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { successToast } from "../toast";
 
 const ProductCard = ({ product, refetch }) => {
   const navigate = useNavigate();
@@ -30,10 +31,12 @@ const ProductCard = ({ product, refetch }) => {
     try {
 
       if (!userInfo) {
+        successToast("Login to your account");
         return navigate("/login");
+        
       }
 
-      
+
       await toggleWishlist({ productId: product._id });
       refetch();
     } catch (error) {

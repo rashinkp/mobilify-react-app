@@ -30,6 +30,7 @@ const AddCartButton = ({
     }
 
     if (!userInfo) {
+      successToast("Login to your account");
       return navigate('/login')
     }
 

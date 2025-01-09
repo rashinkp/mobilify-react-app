@@ -10,7 +10,7 @@ import { successToast, errorToast } from "../../components/toast/index.js";
 import { RotatingLines } from "react-loader-spinner";
 import Modal from "../../components/Modal.jsx";
 import noImage from "../../assets/noImage.png";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const UserManagement = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

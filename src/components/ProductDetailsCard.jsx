@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useGetProductQuery } from "../redux/slices/productApiSlice";
 import { useToggleWishListMutation } from "../redux/slices/wishlistApiSlice";
 import { RotatingLines } from "react-loader-spinner";
@@ -17,12 +17,18 @@ import {
   PackageOpen,
 } from "lucide-react";
 import noImage from "../assets/noImage.png";
+import { successToast } from "./toast";
+import { useSelector } from "react-redux";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [toggleWishlist] = useToggleWishListMutation();
   const { data: product, isLoading, refetch } = useGetProductQuery(id);
   const [mainImage, setMainImage] = useState(noImage);
+
+  const navigate = useNavigate();
+
+  const { userInfo } = useSelector((state) => state.userAuth);
 
   useEffect(() => {
     setMainImage(product?.images[0]?.secure_url);
@@ -47,6 +53,11 @@ const ProductDetails = () => {
 
   const handleFavClick = async () => {
     try {
+      if (!userInfo) {
+        successToast("Login to your account");
+        return navigate("/login");
+      }
+
       await toggleWishlist({ productId: product._id });
       refetch();
     } catch (error) {

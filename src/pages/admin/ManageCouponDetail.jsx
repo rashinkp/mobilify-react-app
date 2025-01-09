@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import { ChevronRight, Home, Pen } from "lucide-react";
 import { useGetACouponQuery } from "../../redux/slices/couponApiSlice";
 import { RotatingLines } from "react-loader-spinner";

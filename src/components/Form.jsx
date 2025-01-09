@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const Form = ({

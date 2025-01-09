@@ -9,7 +9,7 @@ import {
   ChevronRight,
   User,
 } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useGetIndividualOrderQuery } from "../redux/slices/orderApiSlice";
 import { RotatingLines } from "react-loader-spinner";
 
