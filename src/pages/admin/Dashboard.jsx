@@ -37,28 +37,6 @@ import {
 import TableComponent from "../../components/admin/BestSellerTable";
 import { useBestSellingCategoryQuery } from "../../redux/slices/categoryApiSlices";
 
-const products = [
-  { name: "iPhone 13 Pro", sales: "1,234", revenue: "$1,234,567", rank: "#1" },
-  { name: "Samsung S21", sales: "987", revenue: "$987,654", rank: "#2" },
-  // Add more products...
-];
-
-const categories = [
-  {
-    category: "Smartphones",
-    sales: "5,432",
-    revenue: "$5,432,100",
-    rank: "#1",
-  },
-  { category: "Laptops", sales: "4,321", revenue: "$4,321,000", rank: "#2" },
-  // Add more categories...
-];
-
-const brands = [
-  { brand: "Apple", sales: "8,765", revenue: "$8,765,432", rank: "#1" },
-  { brand: "Samsung", sales: "7,654", revenue: "$7,654,321", rank: "#2" },
-  // Add more brands...
-];
 
 const Dashboard = () => {
   const [salesData, setSalesData] = useState([]);
@@ -242,6 +220,9 @@ const Dashboard = () => {
     }
   }, [data]);
 
+
+
+
   const stats = [
     {
       title: "Total Sales",
@@ -387,49 +368,60 @@ const Dashboard = () => {
             <option value="daily">Daily</option>
           </select>
         </div>
+
         <div className="p-6">
           <div className="h-[70vh]">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={salesData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="name"
-                  angle={-45}
-                  textAnchor="end"
-                  height={70}
-                  interval={0}
-                />
-                <YAxis
-                  yAxisId="left"
-                  orientation="left"
-                  tickFormatter={(value) => `₹${value.toLocaleString()}`}
-                />
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  tickFormatter={(value) => Math.round(value)}
-                />
-                <Tooltip
-                  formatter={(value, name) => [
-                    name === "sales" ? `₹${value.toLocaleString()}` : value,
-                    name.charAt(0).toUpperCase() + name.slice(1),
-                  ]}
-                />
-                <Legend />
-                <Bar
-                  yAxisId="left"
-                  dataKey="sales"
-                  fill="#3b82f6"
-                  name="Sales"
-                />
-                <Bar
-                  yAxisId="right"
-                  dataKey="orders"
-                  fill="#10b981"
-                  name="Orders"
-                />
-              </BarChart>
-            </ResponsiveContainer>
+            {salesData.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={salesData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="name"
+                    angle={-45}
+                    textAnchor="end"
+                    height={70}
+                    interval={0}
+                  />
+                  <YAxis
+                    yAxisId="left"
+                    orientation="left"
+                    tickFormatter={(value) => `₹${value.toLocaleString()}`}
+                  />
+                  <YAxis
+                    yAxisId="right"
+                    orientation="right"
+                    tickFormatter={(value) => Math.round(value)}
+                  />
+                  <Tooltip
+                    formatter={(value, name) => [
+                      name === "sales" ? `₹${value.toLocaleString()}` : value,
+                      name.charAt(0).toUpperCase() + name.slice(1),
+                    ]}
+                  />
+                  <Legend />
+                  <Bar
+                    yAxisId="left"
+                    dataKey="sales"
+                    fill="#3b82f6"
+                    name="Sales"
+                  />
+                  <Bar
+                    yAxisId="right"
+                    dataKey="orders"
+                    fill="#10b981"
+                    name="Orders"
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex flex-col items-center justify-center text-gray-500">
+                <BarChart3 className="w-16 h-16 mb-4" />
+                <h3 className="text-xl font-medium mb-2">
+                  No Sales Data Available
+                </h3>
+                <p>There are no sales recorded for the selected time period.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

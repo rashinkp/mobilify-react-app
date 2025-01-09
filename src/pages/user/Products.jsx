@@ -5,7 +5,14 @@ import { useGetAllProductsQuery } from "../../redux/slices/productApiSlice";
 import Pagination from "../../components/Pagination";
 import { useGetAllCategoryQuery } from "../../redux/slices/categoryApiSlices";
 import { Link } from "react-router";
-import { ChevronRight, Filter, Home, Search, SortAsc } from "lucide-react";
+import {
+  ChevronRight,
+  Filter,
+  Home,
+  ListFilter,
+  Search,
+  SortAsc,
+} from "lucide-react";
 import { RotatingLines } from "react-loader-spinner";
 
 const Products = () => {
@@ -73,13 +80,13 @@ const Products = () => {
   return (
     <>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        {/* Enhanced Breadcrumb */}
-        <div className="bg-gradient-to-r bg-indigo-500 shadow-md fixed w-full z-20">
-          <div className="max-w-7xl mx-auto px-4 py-4">
+        {/* Fixed Header/Breadcrumb */}
+        <nav className="fixed top-0 w-full z-20 bg-indigo-500 shadow-md">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center text-sm text-white">
               <Link
                 to="/"
-                className="text-white hover:text-white/80 transition-colors flex items-center"
+                className="flex items-center hover:text-white/80 transition-colors"
               >
                 <Home className="w-4 h-4 mr-1" />
                 Home
@@ -88,44 +95,35 @@ const Products = () => {
               <span className="font-medium">Products</span>
             </div>
           </div>
-        </div>
+        </nav>
 
-        {/* Search and Filters */}
-        <div className="mx-auto px-20 py-10 pt-20">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-6">
-            <div className="grid gap-4 md:grid-cols-[1fr,auto]">
-              {/* Search */}
-              <div className="relative">
+        {/* Main Content */}
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20">
+          {/* Search and Filters Card */}
+          <section className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-6">
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Search Bar */}
+              <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
                   placeholder="Search products..."
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg 
-                  bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-600"
+                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
+                        bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
 
               {/* Filters Group */}
-              <div className="flex flex-wrap gap-4 items-center">
-                <div className="flex items-center gap-2">
-                  <Filter className="w-4 h-4 text-gray-400" />
-                  {/* <select
-                    value={filter}
-                    onChange={(e) => setFilter(e.target.value)}
-                    className="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
-                    rounded-lg focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <option value="active">All Products</option>
-                    <option value="high stock">High Stock</option>
-                  </select> */}
-                </div>
+              <div className="flex flex-wrap gap-3 items-center">
+                {/* Category Filter */}
 
+                <ListFilter className="w-4 h-4 text-gray-400" />
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
-                  rounded-lg focus:ring-2 focus:ring-indigo-500"
+                  className="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
+                        bg-white dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500"
                 >
                   <option value="">All Categories</option>
                   {categories.map((cat) => (
@@ -135,13 +133,14 @@ const Products = () => {
                   ))}
                 </select>
 
+                {/* Sort Options */}
                 <div className="flex items-center gap-2">
                   <SortAsc className="w-4 h-4 text-gray-400" />
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
-                    rounded-lg focus:ring-2 focus:ring-indigo-500"
+                    className="px-3 py-2 rounded-lg border border-gray-200 dark:border-gray-700 
+                          bg-white dark:bg-gray-900 focus:ring-2 focus:ring-indigo-500"
                   >
                     <option value="latest">Latest</option>
                     <option value="priceLowToHigh">Price: Low to High</option>
@@ -153,10 +152,10 @@ const Products = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </section>
 
           {/* Products Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product) => (
               <ProductCard
                 key={product._id}
@@ -164,20 +163,22 @@ const Products = () => {
                 refetch={refetch}
               />
             ))}
-          </div>
+          </section>
 
           {/* Pagination */}
-          <div className="mt-12 flex justify-center">
+          <section className="mt-12 flex justify-center">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={handlePageChange}
             />
-          </div>
-        </div>
-        <div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer>
           <Footer />
-        </div>
+        </footer>
       </div>
     </>
   );
