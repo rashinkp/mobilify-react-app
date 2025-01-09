@@ -155,7 +155,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground h-20">
+      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground">
         {/* Left Section */}
         <div className="flex items-center gap-4">
           <img
@@ -209,9 +209,9 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <Link onClick={() => dispatch(toggleTheme())}>
+            {/* <Link onClick={() => dispatch(toggleTheme())}>
               <SunMoon className="text-black dark:text-white" size={30} />
-            </Link>
+            </Link> */}
 
             <div className="flex items-center gap-2 cursor-pointer relative">
               <div className="w-8 h-8 bg-lightBackground rounded-full overflow-hidden">
@@ -259,14 +259,14 @@ const Navbar = () => {
         ) : (
           <div className=" hidden lg:flex">
             <ul className="flex flex-row gap-7 items-center px-4 dark:text-lightText">
-              <li className="cursor-pointer hover:text-purple-700">
+              {/* <li className="cursor-pointer hover:text-purple-700">
                 <FontAwesomeIcon
                   size="xl"
                   onClick={() => dispatch(toggleTheme())}
                   icon="fa-solid fa-moon"
                   className="cursor-pointer hover:text-primary  dark:hover:text-primary"
                 />
-              </li>
+              </li> */}
               <Link to="/login">
                 <li className="cursor-pointer hover:text-purple-700 ">LOGIN</li>
               </Link>
@@ -288,7 +288,7 @@ const Navbar = () => {
           <FontAwesomeIcon
             icon={faBars}
             size="2x"
-            className="cursor-pointer hover:text-gray-700 dark:text-lightText "
+            className="cursor-pointer hover:text-indigo-600 dark:text-lightText "
             onClick={() => setMenuOpen(!menuOpen)}
           />
         </div>
@@ -310,12 +310,18 @@ const Navbar = () => {
                     <Link to="/profile">
                       <li>PROFILE</li>
                     </Link>
+                    <Link to="/orders">
+                      <li>Orders</li>
+                    </Link>
+                    <Link to="/wishlist">
+                      <li>Wishlist</li>
+                    </Link>
                   </div>
                 </div>
               ) : (
                 <div>
                   <ul className="flex flex-col gap-7  dark:text-lightText">
-                    <li className="cursor-pointer hover:text-purple-700">
+                    {/* <li className="cursor-pointer hover:text-purple-700">
                       <FontAwesomeIcon
                         size="xl"
                         onClick={() => {
@@ -325,7 +331,7 @@ const Navbar = () => {
                         icon="fa-solid fa-moon"
                         className="cursor-pointer hover:text-primary  dark:hover:text-primary"
                       />
-                    </li>
+                    </li> */}
                     <Link to="/login" onClick={() => setMenuOpen(false)}>
                       <li className="cursor-pointer hover:text-purple-700 ">
                         LOGIN

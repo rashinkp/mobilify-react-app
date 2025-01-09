@@ -13,6 +13,7 @@ import {
   Box,
   Home,
   DiamondPercent,
+  Moon,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -38,6 +39,7 @@ import WalletDashboard from "../../pages/user/Wallet.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import BrudCrump from "../../components/BrudCrump.jsx";
 import ReferralManagement from "./Referral.jsx";
+import ThemeToggle from "./ToggleTheme.jsx";
 
 const UserProfileDashboard = () => {
   const { data, isLoading, isError, error, refetch } = useGetUserQuery();
@@ -198,6 +200,13 @@ const UserProfileDashboard = () => {
                 title="Change Password"
                 section="changePassword"
               />
+
+              <MenuSection
+                icon={Moon}
+                title="Change Theme"
+                section="changeTheme"
+              />
+
               <button
                 className="flex items-center w-full p-3 rounded-lg hover:bg-red-50 text-red-600 transition-colors"
                 onClick={handleLogout}
@@ -217,6 +226,7 @@ const UserProfileDashboard = () => {
             {activeSection === "orders" && <OrderListingPage />}
             {activeSection === "wallet" && <WalletDashboard />}
             {activeSection === "referral management" && <ReferralManagement />}
+            {activeSection === "changeTheme" && <ThemeToggle />}
           </div>
         </div>
         <input
