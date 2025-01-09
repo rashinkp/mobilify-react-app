@@ -110,7 +110,7 @@ const Products = () => {
               <div className="flex flex-wrap gap-4 items-center">
                 <div className="flex items-center gap-2">
                   <Filter className="w-4 h-4 text-gray-400" />
-                  <select
+                  {/* <select
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
                     className="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
@@ -118,10 +118,10 @@ const Products = () => {
                   >
                     <option value="active">All Products</option>
                     <option value="high stock">High Stock</option>
-                  </select>
+                  </select> */}
                 </div>
 
-                {/* <select
+                <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
                   className="px-3 py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
@@ -133,7 +133,7 @@ const Products = () => {
                       {cat.name}
                     </option>
                   ))}
-                </select> */}
+                </select>
 
                 <div className="flex items-center gap-2">
                   <SortAsc className="w-4 h-4 text-gray-400" />

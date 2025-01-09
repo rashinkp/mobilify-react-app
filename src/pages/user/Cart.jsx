@@ -160,7 +160,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <div className="container mx-auto bg-gray-50 dark:bg-darkBackground min-h-screen">
+    <div className="container  bg-gray-50 dark:bg-darkBackground min-h-screen">
       <div className="bg-gradient-to-r bg-indigo-500 shadow-md fixed w-full z-20">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center text-sm text-white">

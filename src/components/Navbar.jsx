@@ -30,7 +30,6 @@ const Navbar = () => {
     { skip: !userInfo }
   );
 
-
   console.log(cartCount);
 
   const { user } = data || {};
@@ -156,7 +155,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground">
+      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground h-20">
         {/* Left Section */}
         <div className="flex items-center gap-4">
           <img
@@ -335,10 +334,7 @@ const Navbar = () => {
 
                     <li className="cursor-pointer hover:text-purple-700 ">
                       <div className="bg-indigo-600 text-lightText py-2 px-5 rounded-full flex gap-4 items-center dark:bg-inherit dark:border dark:border-lightBackground ">
-                        <Link
-                          to="/signup"
-                          onClick={() => setMenuOpen(false)}
-                        >
+                        <Link to="/signup" onClick={() => setMenuOpen(false)}>
                           <button className="">SIGN UP</button>
                         </Link>
                         <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
