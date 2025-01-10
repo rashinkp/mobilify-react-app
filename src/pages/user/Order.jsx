@@ -326,11 +326,13 @@ const OrderDetailsPage = () => {
       <div className="pt-20 container mx-auto p-6 min-h-screen">
         <div className="mx-auto bg-white dark:bg-transparent dark:text-white   ">
           {/* Order Header with Action Buttons */}
-          <div className=" border-b-2 p-4 flex justify-between items-center">
+          <div className="border-b-2 p-3 sm:p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-3 sm:space-y-0">
             <div>
-              <h2 className="text-xl font-bold">Order Details</h2>
-              <p className="text-sm">Order ID: {order.orderNumber}</p>
-              <p className="text-sm">
+              <h2 className="text-lg sm:text-xl font-bold">Order Details</h2>
+              <p className="text-xs sm:text-sm">
+                Order ID: {order.orderNumber}
+              </p>
+              <p className="text-xs sm:text-sm">
                 Order Date:{" "}
                 <strong>
                   {new Date(order.orderDate).toLocaleString("en-IN", {
@@ -345,38 +347,38 @@ const OrderDetailsPage = () => {
               </p>
             </div>
             {order.status !== "Pending" && (
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto">
                 {/* Return/Replace Button */}
                 {order.returnPolicy && isReturnActive && (
                   <button
                     onClick={() => setConfirmReturn(true)}
-                    className={`flex items-center px-3 py-2 rounded-md transition-colors duration-300 
-              ${
-                isReturnDisabled
-                  ? " text-gray-500 cursor-not-allowed"
-                  : " text-black hover:text-green-600 dark:hover:text-green-600 dark:text-white"
-              }`}
+                    className={`flex items-center px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-colors duration-300 text-sm sm:text-base
+            ${
+              isReturnDisabled
+                ? "text-gray-500 cursor-not-allowed"
+                : "text-black hover:text-green-600 dark:hover:text-green-600 dark:text-white"
+            }`}
                     disabled={isReturnDisabled}
                     title="Return or Replace Item"
                   >
-                    <RefreshCcw className="mr-2 w-5 h-5" />
+                    <RefreshCcw className="mr-1 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                     Return/Replace
                   </button>
                 )}
 
                 {/* Cancel Order Button */}
                 <button
-                  className={`flex items-center px-3 py-2 rounded-md transition-colors duration-300
-              ${
-                isCancelDisabled
-                  ? "text-gray-500 cursor-not-allowed"
-                  : "text-black hover:text-red-600 dark:hover:text-red-600 dark:text-white"
-              }`}
+                  className={`flex items-center px-2 sm:px-3 py-1 sm:py-2 rounded-md transition-colors duration-300 text-sm sm:text-base
+            ${
+              isCancelDisabled
+                ? "text-gray-500 cursor-not-allowed"
+                : "text-black hover:text-red-600 dark:hover:text-red-600 dark:text-white"
+            }`}
                   onClick={() => setShowCancelConfirmation(true)}
                   disabled={isCancelDisabled}
                   title="Cancel Order"
                 >
-                  <X className="mr-1 w-5 h-5 " />
+                  <X className="mr-1 w-4 h-4 sm:w-5 sm:h-5" />
                   Cancel Order
                 </button>
               </div>
@@ -393,25 +395,25 @@ const OrderDetailsPage = () => {
 
           {/* Order Status Progress Bar */}
           {order.status === "Returned" ? (
-            <div className="flex justify-center m-5 text-yellow-600 font-bold">
+            <div className="flex justify-center m-3 sm:m-5 text-yellow-600 font-bold text-sm sm:text-base">
               Order returned
             </div>
           ) : order.status === "Pending" ? (
-            <div className="flex justify-center m-5 text-red-600 font-bold">
+            <div className="flex justify-center m-3 sm:m-5 text-red-600 font-bold text-sm sm:text-base">
               Payment Failure
             </div>
           ) : (
-            <div className="mx-auto p-10 max-w-6xl dark:bg-transparent">
-              <div className="flex items-center justify-between relative">
+            <div className="mx-auto p-4 sm:p-10 max-w-6xl dark:bg-transparent overflow-x-auto">
+              <div className="flex items-center justify-between relative min-w-[300px]">
                 {orderStages.map((stage, index) => (
                   <div
                     key={stage.label}
-                    className="flex-1 flex flex-col items-center relative"
+                    className="flex-1 flex flex-col items-center relative px-2 sm:px-0"
                   >
                     {/* Connecting line: before the current circle */}
                     {index > 0 && (
                       <div
-                        className={`absolute top-6 left-0 right-1/2 h-1 -translate-y-1/2 ${
+                        className={`absolute top-4 sm:top-6 left-0 right-1/2 h-0.5 sm:h-1 -translate-y-1/2 ${
                           stage.completed
                             ? "bg-indigo-500"
                             : "bg-gray-300 dark:bg-white"
@@ -422,24 +424,24 @@ const OrderDetailsPage = () => {
 
                     {/* Status circle with icon */}
                     <div
-                      className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center ${
+                      className={`relative z-10 w-8 h-8 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${
                         stage.completed
                           ? "bg-indigo-500 text-white"
                           : "bg-gray-300 dark:bg-white text-gray-600"
                       }`}
                     >
-                      <stage.Icon className="w-6 h-6" />
+                      <stage.Icon className="w-4 h-4 sm:w-6 sm:h-6" />
                     </div>
 
                     {/* Status label */}
-                    <span className="text-xs mt-2 text-center dark:text-white">
+                    <span className="text-[10px] sm:text-xs mt-1 sm:mt-2 text-center dark:text-white whitespace-nowrap px-1">
                       {stage.label}
                     </span>
 
                     {/* Connecting line: after the current circle */}
                     {index < orderStages.length - 1 && (
                       <div
-                        className={`absolute top-6 left-1/2 right-0 h-1 -translate-y-1/2 ${
+                        className={`absolute top-4 sm:top-6 left-1/2 right-0 h-0.5 sm:h-1 -translate-y-1/2 ${
                           stage.completed
                             ? "bg-indigo-500"
                             : "bg-gray-300 dark:bg-white"
