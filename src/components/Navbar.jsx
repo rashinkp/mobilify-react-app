@@ -22,6 +22,8 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const location = useLocation();
 
+  const menuRef = useRef(null);
+
   const { userInfo } = useSelector((state) => state.userAuth);
   const cartCount = useSelector((state) => state.cart.count);
   //skips api calling if the userinfo does not exist
@@ -30,7 +32,19 @@ const Navbar = () => {
     { skip: !userInfo }
   );
 
-  console.log(cartCount);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setMenuOpen]);
 
   const { user } = data || {};
   const { picture } = user || {};
@@ -295,7 +309,10 @@ const Navbar = () => {
 
         {/* Dropdown Menu for Small Screens */}
         {menuOpen && (
-          <div className="absolute flex top-full right-0 bg-lightBackground shadow-lg rounded-md w-full py-7 z-50 justify-center dark:bg-darkBackground dark:border dark:border-lightText dark:text-lightText">
+          <div
+            ref={menuRef}
+            className="absolute flex top-full right-0 bg-lightBackground shadow-lg rounded-md w-full py-7 z-50 justify-center dark:bg-darkBackground dark:border dark:border-lightText dark:text-lightText"
+          >
             <ul className="flex flex-col gap-6 px-4">
               {links.map((link, i) => (
                 <Link key={i} to={link.path} onClick={() => setMenuOpen(false)}>
@@ -309,6 +326,12 @@ const Navbar = () => {
                   <div className="flex items-center gap-2 cursor-pointer">
                     <Link to="/profile" onClick={() => setMenuOpen(false)}>
                       <li>PROFILE</li>
+                    </Link>
+                  </div>
+
+                  <div className="flex items-center gap-2 cursor-pointer">
+                    <Link to="/cart" onClick={() => setMenuOpen(false)}>
+                      <li>My Cart</li>
                     </Link>
                   </div>
 

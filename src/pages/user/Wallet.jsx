@@ -134,6 +134,15 @@ const WalletDashboard = () => {
         </div>
       )}
 
+
+      {!isWalletPage && (
+        <div className="text-center text-indigo-600">
+          <Link to='/wallet'>
+            Go to wallet page
+          </Link>
+        </div>
+      )}
+
       <div className={`${isWalletPage && "pt-20"} w-full mx-auto p-4`}>
         {/* Main Balance Card */}
         <div className="mb-6 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-lg">

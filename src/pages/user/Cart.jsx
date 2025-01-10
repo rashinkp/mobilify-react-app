@@ -220,7 +220,7 @@ const ShoppingCart = () => {
             products.map((product) => (
               <div
                 key={product.productId}
-                className="bg-white dark:bg-black dark:text-white shadow-md rounded-lg p-4 mb-4 flex items-center relative overflow-hidden"
+                className="bg-white dark:bg-black dark:text-white shadow-md rounded-lg p-4 mb-4 relative overflow-hidden"
               >
                 {product?.productDetails?.stock < 1 && (
                   <div className="absolute inset-0 z-10 backdrop-blur-sm bg-white/50 dark:bg-black/50 flex flex-col items-center justify-center space-y-4">
@@ -238,79 +238,86 @@ const ShoppingCart = () => {
                   </div>
                 )}
 
-                <img
-                  src={product?.productDetails?.images[0]?.secure_url || ""}
-                  alt="Product image is not available"
-                  className={`w-24 h-24 object-cover mr-6 rounded ${
-                    product?.productDetails?.stock < 1 ? "opacity-50" : ""
-                  }`}
-                />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <img
+                    src={product?.productDetails?.images[0]?.secure_url || ""}
+                    alt="Product image is not available"
+                    className={`w-full sm:w-24 h-40 sm:h-24 object-cover rounded ${
+                      product?.productDetails?.stock < 1 ? "opacity-50" : ""
+                    }`}
+                  />
 
-                <div className="flex-grow">
-                  <h2 className="text-xl font-semibold">
-                    {product?.productDetails?.name}
-                  </h2>
-                  <p className="text-gray-500 dark:text-gray-300">
-                    {product?.productDetails?.model}
-                  </p>
-                  <p className="text-primary font-bold">
-                    <span className="text-gray-500 line-through mr-2">
-                      ₹
-                      {product?.productDetails?.price.toLocaleString("en-IN", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </span>
-                    <span>₹{finalPrice(product?.productDetails)}</span>
-                  </p>
-
-                  {product?.productDetails?.stock < 1 && (
-                    <p className="text-red-500 font-semibold mt-2">
-                      Currently Unavailable
+                  <div className="flex-grow space-y-2">
+                    <h2 className="text-xl font-semibold">
+                      {product?.productDetails?.name}
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-300">
+                      {product?.productDetails?.model}
                     </p>
-                  )}
-                </div>
+                    <p className="text-primary font-bold">
+                      <span className="text-gray-500 line-through mr-2">
+                        ₹
+                        {product?.productDetails?.price.toLocaleString(
+                          "en-IN",
+                          {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          }
+                        )}
+                      </span>
+                      <span>₹{finalPrice(product?.productDetails)}</span>
+                    </p>
 
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={() => decrementQuantity(product.productId)}
-                    disabled={
-                      product.quantity === 1 ||
-                      product?.productDetails?.stock < 1
-                    }
-                    className={`p-2 rounded-full ${
-                      product.quantity === 1 ||
-                      product?.productDetails?.stock < 1
-                        ? "bg-gray-300 dark:bg-slate-700 cursor-not-allowed"
-                        : "bg-gray-200 dark:bg-slate-800"
-                    }`}
-                  >
-                    <Minus size={20} />
-                  </button>
+                    {product?.productDetails?.stock < 1 && (
+                      <p className="text-red-500 font-semibold">
+                        Currently Unavailable
+                      </p>
+                    )}
+                  </div>
 
-                  <span className="font-bold">{product.quantity}</span>
+                  <div className="flex flex-row sm:flex-col items-center justify-between w-full sm:w-auto gap-4 mt-4 sm:mt-0">
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={() => decrementQuantity(product.productId)}
+                        disabled={
+                          product.quantity === 1 ||
+                          product?.productDetails?.stock < 1
+                        }
+                        className={`p-2 rounded-full ${
+                          product.quantity === 1 ||
+                          product?.productDetails?.stock < 1
+                            ? "bg-gray-300 dark:bg-slate-700 cursor-not-allowed"
+                            : "bg-gray-200 dark:bg-slate-800"
+                        }`}
+                      >
+                        <Minus size={20} />
+                      </button>
 
-                  <button
-                    onClick={() => incrementQuantity(product.productId)}
-                    disabled={
-                      product?.productDetails?.stock < 1 ||
-                      product.quantity >= 3
-                    }
-                    className={`p-2 rounded-full disabled:cursor-not-allowed disabled: dark:bg-slate-700 ${
-                      product?.productDetails?.stock < 1
-                        ? "bg-gray-300 dark:bg-slate-700 cursor-not-allowed"
-                        : "bg-gray-200 dark:bg-slate-800"
-                    }`}
-                  >
-                    <Plus size={20} />
-                  </button>
+                      <span className="font-bold">{product.quantity}</span>
 
-                  <button
-                    onClick={() => removeProduct(product)}
-                    className="p-2 text-red-500 hover:bg-red-50 rounded-full"
-                  >
-                    <Trash2 size={20} />
-                  </button>
+                      <button
+                        onClick={() => incrementQuantity(product.productId)}
+                        disabled={
+                          product?.productDetails?.stock < 1 ||
+                          product.quantity >= 3
+                        }
+                        className={`p-2 rounded-full disabled:cursor-not-allowed ${
+                          product?.productDetails?.stock < 1
+                            ? "bg-gray-300 dark:bg-slate-700 cursor-not-allowed"
+                            : "bg-gray-200 dark:bg-slate-800"
+                        }`}
+                      >
+                        <Plus size={20} />
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={() => removeProduct(product)}
+                      className="p-2 text-red-500 hover:bg-red-50 rounded-full"
+                    >
+                      <Trash2 size={20} />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))

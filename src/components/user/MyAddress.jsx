@@ -134,7 +134,7 @@ const MyAddress = () => {
           />
         )}
 
-        {addresses.map((address, i) => (
+        {addresses.length < 1 ? (<div className="text-center text-gray-400">No address yet</div>) : addresses.map((address, i) => (
           <div
             key={i}
             className="bg-white dark:bg-slate-800 p-4 rounded-lg dark:border-none border mb-2 flex justify-between items-center"
