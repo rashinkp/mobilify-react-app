@@ -73,6 +73,9 @@ const ProductReviewForm = ({ order }) => {
     }
   };
 
+
+  const isReviewValid = rating > 0 && reviewText.trim().length > 0;
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 z-50 backdrop-blur-sm bg-black/30 flex justify-center items-center">
@@ -177,9 +180,11 @@ const ProductReviewForm = ({ order }) => {
         <button
           type="submit"
           className="max-w-lg bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 disabled:bg-gray-500 disabled:cursor-not-allowed"
-          disabled={!isFormChanged}
+          disabled={!isFormChanged || !isReviewValid}
         >
-          Submit Review
+          {isFormChanged && isReviewValid
+            ? "Submit Review"
+            : "Add Review Content"}
         </button>
       </form>
     </div>
