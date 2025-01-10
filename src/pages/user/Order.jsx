@@ -323,7 +323,7 @@ const OrderDetailsPage = () => {
           </div>
         </div>
       )}
-      <div className="container mx-auto p-6 min-h-screen">
+      <div className="pt-20 container mx-auto p-6 min-h-screen">
         <div className="mx-auto bg-white dark:bg-transparent dark:text-white   ">
           {/* Order Header with Action Buttons */}
           <div className=" border-b-2 p-4 flex justify-between items-center">
