@@ -155,7 +155,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground">
+      <div className="fixed z-40 top-0 left-0 right-0 flex items-center justify-between px-8 py-4 lg:px-16 lg:py-5 font-medium bg-lightBackground dark:bg-darkBackground h-20">
         {/* Left Section */}
         <div className="flex items-center gap-4">
           <img
@@ -305,7 +305,7 @@ const Navbar = () => {
                 </Link>
               ))}
               {userInfo ? (
-                <div className="flex flex-col items-center gap-3 mt-2">
+                <div className="flex flex-col items-center gap-6 mt-2">
                   <div className="flex items-center gap-2 cursor-pointer">
                     <Link to="/profile" onClick={() => setMenuOpen(false)}>
                       <li>PROFILE</li>

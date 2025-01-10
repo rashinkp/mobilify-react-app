@@ -81,7 +81,7 @@ const Products = () => {
     <>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Fixed Header/Breadcrumb */}
-        <nav className="fixed top-0 w-full z-20 bg-indigo-500 shadow-md">
+        <nav className="bg-gradient-to-r bg-indigo-500 shadow-md fixed w-full z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center text-sm text-white">
               <Link
@@ -155,7 +155,7 @@ const Products = () => {
           </section>
 
           {/* Products Grid */}
-          <section className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <section className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 5xl:grid-cols-5 justify-center px-4">
             {products.map((product) => (
               <ProductCard
                 key={product._id}
