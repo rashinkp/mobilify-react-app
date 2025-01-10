@@ -62,7 +62,14 @@ const HomePage = () => {
 
   return (
     <div>
-      <img src={Banner1} className="w-full mb-20 object-fill" alt="" />
+      <img
+        src={
+          "https://res.cloudinary.com/dxogdfuse/image/upload/f_auto,q_auto/oj073er3vty1c0hwhyju" ||
+          Banner1
+        }
+        className="w-full mb-20 object-fill"
+        alt=""
+      />
       <div className="px-16">
         <p className="font-extrabold text-4xl dark:text-lightText">
           New <span className="text-primary">arrival</span> for you
@@ -77,7 +84,14 @@ const HomePage = () => {
           ))}
         </div>
       </div>
-      <img src={Banner2} className="w-full mt-20 object-cover mb-20" alt="" />
+      <img
+        src={
+          "https://res.cloudinary.com/dxogdfuse/image/upload/f_auto,q_auto/vvhklpagahmmqbovd7sw" ||
+          Banner2
+        }
+        className="w-full mt-20 object-cover mb-20"
+        alt=""
+      />
       <div className="px-16">
         <p className="font-extrabold text-4xl dark:text-lightText">
           Flash sale for <span className="text-primary">best</span> sellers
