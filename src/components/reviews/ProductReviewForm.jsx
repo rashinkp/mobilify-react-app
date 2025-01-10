@@ -56,9 +56,9 @@ const ProductReviewForm = ({ order }) => {
     }
 
     const hasChanged =
-      watchedFields[0] !== review.rating ||
-      watchedFields[1] !== review.title ||
-      watchedFields[2] !== review.description;
+      watchedFields[0] !== review?.rating ||
+      watchedFields[1] !== review?.title ||
+      watchedFields[2] !== review?.description;
 
     setIsFormChanged(hasChanged);
   }, [watchedFields, review]);
