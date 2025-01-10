@@ -49,9 +49,11 @@ const ProductReviewForm = ({ order }) => {
     }
   }, [review, setValue]);
 
-  // Check for changes in form values
   useEffect(() => {
-    if (!review) return;
+    if (review === null) {
+      setIsFormChanged(true);
+      return;
+    }
 
     const hasChanged =
       watchedFields[0] !== review.rating ||
