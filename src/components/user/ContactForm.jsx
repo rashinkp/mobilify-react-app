@@ -55,7 +55,7 @@ const ContactForm = () => {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={() => successToast('This contactus')}
+            onClick={() => successToast('This contactus page is still in production mode')}
             type="submit"
             className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-primaryDark focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >

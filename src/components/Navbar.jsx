@@ -305,21 +305,21 @@ const Navbar = () => {
                 </Link>
               ))}
               {userInfo ? (
-                <div className="flex items-center gap-3 mt-2">
+                <div className="flex flex-col items-center gap-3 mt-2">
                   <div className="flex items-center gap-2 cursor-pointer">
-                    <Link to="/profile">
+                    <Link to="/profile" onClick={() => setMenuOpen(false)}>
                       <li>PROFILE</li>
                     </Link>
                   </div>
 
                   <div className="flex items-center gap-2 cursor-pointer">
-                    <Link to="/orders">
+                    <Link to="/orders" onClick={() => setMenuOpen(false)}>
                       <li>ORDERS</li>
                     </Link>
                   </div>
 
                   <div className="flex items-center gap-2 cursor-pointer">
-                    <Link to="/wishlist">
+                    <Link to="/wishlist" onClick={() => setMenuOpen(false)}>
                       <li>WISHLIST</li>
                     </Link>
                   </div>
