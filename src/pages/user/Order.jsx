@@ -17,12 +17,15 @@ import {
   Download,
   HandCoins,
   Calendar,
+  ChevronRight,
+  User,
+  PackageSearch,
 } from "lucide-react";
 import {
   useChangeOrderStatusMutation,
   useGetSingleOrderQuery,
 } from "../../redux/slices/orderApiSlice";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { RotatingLines } from "react-loader-spinner";
 import { errorToast, successToast } from "../../components/toast";
 import { useGetProductQuery } from "../../redux/slices/productApiSlice";
@@ -256,6 +259,40 @@ const OrderDetailsPage = () => {
 
   return (
     <>
+      <div className="bg-gradient-to-r bg-indigo-500 shadow-md fixed w-full z-20">
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <div className="flex items-center text-sm text-white">
+            <Link
+              to="/"
+              className="text-white hover:text-white/80 transition-colors flex items-center"
+            >
+              <Home className="w-4 h-4 mr-1" />
+              Home
+            </Link>
+            <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
+
+            <Link
+              to="/profile"
+              className="text-white hover:text-white/80 transition-colors flex items-center"
+            >
+              <User className="w-4 h-4 mr-1" />
+              Profile
+            </Link>
+            <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
+
+            <Link
+              to="/orders"
+              className="text-white hover:text-white/80 transition-colors flex items-center"
+            >
+              <PackageSearch className="w-4 h-4 mr-1" />
+              All Orders
+            </Link>
+            <ChevronRight className="w-4 h-4 mx-2 text-white/60" />
+            <span className="font-medium">Order</span>
+          </div>
+        </div>
+      </div>
+
       {confirmReturn && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full">
