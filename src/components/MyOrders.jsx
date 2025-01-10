@@ -87,7 +87,7 @@ const OrderListingPage = () => {
 
   const getPaymentStatusColor = (status) => {
     switch (status) {
-      case "Paid":
+      case "Successful":
         return "text-green-600";
       case "Pending":
         return "text-yellow-600";
