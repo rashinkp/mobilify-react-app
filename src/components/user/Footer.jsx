@@ -133,7 +133,7 @@ const Footer = () => {
             </h3>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.facebook.com/rashin.kp.9/"
                 className="text-gray-600 hover:text-primary transition-colors duration-300"
               >
                 <FontAwesomeIcon
@@ -142,7 +142,7 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="#"
+                href="https://x.com/rashin_kp"
                 className="text-gray-600 hover:text-primary transition-colors duration-300"
               >
                 <FontAwesomeIcon
@@ -151,7 +151,7 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/rash.e_/?next=%2F"
                 className="text-gray-600 hover:text-primary transition-colors duration-300"
               >
                 <FontAwesomeIcon
@@ -160,7 +160,7 @@ const Footer = () => {
                 />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/rashin-kp-6a66b62a1/"
                 className="text-gray-600 hover:text-primary transition-colors duration-300"
               >
                 <FontAwesomeIcon
@@ -176,6 +176,7 @@ const Footer = () => {
         <div className="mt-10 text-center text-gray-600 dark:text-gray-300">
           <p>
             &copy; {new Date().getFullYear()} Your Company. All Rights Reserved.
+            Developed and Handled by Rashin
           </p>
         </div>
       </div>
