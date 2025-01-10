@@ -28,6 +28,12 @@ const ProductReviewForm = ({ order }) => {
 
   const watchedFields = watch(["rating", "title", "description"]);
 
+  // Check if form has valid content
+  const isReviewValid =
+    watchedFields[0] > 0 &&
+    watchedFields[1]?.trim().length > 0 &&
+    watchedFields[2]?.trim().length > 0;
+
   const {
     data = {},
     isLoading,
@@ -73,8 +79,13 @@ const ProductReviewForm = ({ order }) => {
     }
   };
 
-
-  const isReviewValid = rating > 0 && reviewText.trim().length > 0;
+  const getButtonText = () => {
+    if (!watchedFields[0]) return "Please Add Rating";
+    if (!watchedFields[1]?.trim()) return "Please Add Review Title";
+    if (!watchedFields[2]?.trim()) return "Please Add Review Description";
+    if (!isFormChanged) return "No Changes Made";
+    return "Submit Review";
+  };
 
   if (isLoading) {
     return (
@@ -181,10 +192,9 @@ const ProductReviewForm = ({ order }) => {
           type="submit"
           className="max-w-lg bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200 disabled:bg-gray-500 disabled:cursor-not-allowed"
           disabled={!isFormChanged || !isReviewValid}
+          title={!isReviewValid ? "Please complete all review fields" : ""}
         >
-          {isFormChanged && isReviewValid
-            ? "Submit Review"
-            : "Add Review Content"}
+          {getButtonText()}
         </button>
       </form>
     </div>
