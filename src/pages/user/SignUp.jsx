@@ -46,7 +46,7 @@ const SignUp = () => {
 
   const extraLinks = [
     {
-      text: 'already have account',
+      text: 'already have account?',
       linkText: 'sign in',
       path: '/login'
     }

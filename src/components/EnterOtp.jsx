@@ -14,7 +14,7 @@ import { RotatingLines } from "react-loader-spinner";
 const EnterOtp = () => {
   const [verifyOtp] = useOtpVerifcationMutation();
   const [resendOtp] = useResendOtpEmailMutation()
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(60);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
