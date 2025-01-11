@@ -108,7 +108,11 @@ const ProductCard = ({ product, refetch }) => {
             </h3>
             <div className="flex flex-col items-end">
               <span className="text-sm text-gray-500 line-through">
-                ₹{product.price.toFixed(2)}
+                ₹
+                {product.price.toLocaleString("en-IN", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </span>
               <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 ₹{finalPrice()}
